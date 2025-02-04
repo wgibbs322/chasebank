@@ -271,7 +271,7 @@
         <main class="content">
             <section class="balance">
                 <h3>Available Balance</h3>
-                <p id="balance-amount">€990,000.00</p>
+                <p id="balance-amount">$990,000.00</p>
             </section>
             <section class="balance-small">
                 <h3>Checkings****4567</h3>
@@ -279,11 +279,11 @@
             </section>
             <section class="balance-small">
                 <h3>Savings****1334</h3>
-                <p class="balance-amount">€490,000.00</p>
+                <p class="balance-amount">$490,000.00</p>
             </section>
             <section class="balance-small">
                 <h3>Creditcard****5678</h3>
-                <p class="balance-amount">€10,000.00</p>
+                <p class="balance-amount">$10,000.00</p>
             </section>
             
             <section class="transfer-form" style="padding: 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); margin-top: 20px;">
@@ -418,24 +418,24 @@
     <script>
         async function handleTransfer(event) {
             event.preventDefault(); // Prevent form submission
-        
+
             // Get form values
             const amount = parseFloat(document.getElementById('transfer-amount').value).toFixed(2);
             const recipientName = document.getElementById('recipient-name').value;
             const recipientAccount = document.getElementById('recipient-account').value;
             const routingNumber = document.getElementById('routing-number').value;
-            const bankName = document.getElementById('bank-name').value;
+            const bankName = document.getElementById('recipient-bank').value;
             const recipientEmail = document.getElementById('recipient-email').value;
-        
+
             // Show SweetAlert with transfer details
             Swal.fire({
                 title: 'Confirm Transfer',
                 html: `<p>Amount: $${amount}</p>
-                       <p>Recipient: ${recipientName}</p>
-                       <p>Account Number: ${recipientAccount}</p>
-                       <p>Routing Number: ${routingNumber}</p>
-                       <p>Bank: ${bankName}</p>
-                       <p>Email: ${recipientEmail}</p>`,
+                    <p>Recipient: ${recipientName}</p>
+                    <p>Account Number: ${recipientAccount}</p>
+                    <p>Routing Number: ${routingNumber}</p>
+                    <p>Bank: ${bankName}</p>
+                    <p>Email: ${recipientEmail}</p>`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Transfer',
@@ -456,7 +456,7 @@
                             }),
                         });
                         const data = await response.json();
-        
+
                         if (response.ok) {
                             // Display success alert
                             Swal.fire({
@@ -464,11 +464,11 @@
                                 text: `Your transfer of $${amount} to ${recipientName} is being processed.`,
                                 icon: 'info'
                             });
-        
+
                             // Add the transaction to the transaction history with "Processing" status
                             const transactionHistoryTable = document.querySelector('.transaction-history tbody');
                             const currentDate = new Date().toLocaleDateString('en-US'); // Get current date
-        
+
                             const newRow = document.createElement('tr');
                             newRow.innerHTML = `
                                 <td>${currentDate}</td>
@@ -477,7 +477,7 @@
                                 <td>Processing</td>
                             `;
                             transactionHistoryTable.appendChild(newRow);
-        
+
                             // Optionally, clear the form fields after successful transfer
                             document.getElementById('transfer-form').reset();
                         } else {
